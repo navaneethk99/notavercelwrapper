@@ -1,12 +1,21 @@
-import { SignInCard } from "@/components/sign-in-card";
+import { redirect } from "next/navigation";
 
-export default function Home() {
+import { SignInCard } from "@/components/sign-in-card";
+import { getServerSession } from "@/lib/session";
+
+export default async function Home() {
+  const session = await getServerSession();
+
+  if (session) {
+    redirect("/dashboard");
+  }
+
   return (
     <main className="relative min-h-screen overflow-hidden bg-background text-foreground">
-      <div className="landing-grid absolute inset-0 opacity-100" />
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,180,130,0.045)_1px,transparent_1px),linear-gradient(90deg,rgba(255,180,130,0.045)_1px,transparent_1px),linear-gradient(180deg,rgba(255,180,130,0.025),transparent_22%)] [background-position:center_center] [background-size:72px_72px,72px_72px,100%_100%] [mask-image:radial-gradient(circle_at_center,black_45%,transparent_100%)]" />
       <div className="pointer-events-none absolute inset-0">
-        <div className="landing-glow-left absolute left-[-14rem] top-[10%] h-[34rem] w-[34rem] rounded-full" />
-        <div className="landing-glow-right absolute bottom-[-16rem] right-[-10rem] h-[36rem] w-[36rem] rounded-full" />
+        <div className="absolute left-[-14rem] top-[10%] h-[34rem] w-[34rem] rounded-full bg-[radial-gradient(circle,rgba(255,115,43,0.42)_0%,rgba(255,115,43,0.2)_28%,transparent_68%)] blur-[72px]" />
+        <div className="absolute bottom-[-16rem] right-[-10rem] h-[36rem] w-[36rem] rounded-full bg-[radial-gradient(circle,rgba(255,124,43,0.16)_0%,rgba(255,124,43,0.07)_34%,transparent_70%)] blur-[80px]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.04),transparent_30%),linear-gradient(180deg,rgba(4,6,10,0.2),rgba(4,6,10,0.72))]" />
       </div>
 
@@ -17,15 +26,12 @@ export default function Home() {
               <h1 className="max-w-4xl text-5xl font-semibold tracking-[-0.08em] text-foreground sm:text-6xl lg:text-7xl">
                 totally-not-vercel
               </h1>
-              <p className="max-w-2xl text-base leading-7 text-muted sm:text-lg sm:leading-8">
-                Spin up append lists, invite contributors, and keep the feed
-                moving with a control-room experience.
-              </p>
+              
             </div>
           </header>
 
           <div className="flex flex-1 items-center justify-center py-4 sm:py-8 lg:py-12">
-            <SignInCard />
+            <SignInCard session={session} />
           </div>
         </section>
       </div>

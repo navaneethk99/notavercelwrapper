@@ -31,7 +31,7 @@ export function SignInCard({ session }: SignInCardProps) {
     startTransition(async () => {
       await authClient.signIn.social({
         provider: "github",
-        callbackURL: "/",
+        callbackURL: "/dashboard",
         scopes: githubScopes,
       });
     });
