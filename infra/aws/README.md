@@ -1,0 +1,42 @@
+# AWS Warm Workers
+
+This Terraform stack creates:
+
+- 1 VPC
+- 1 public subnet
+- 1 internet gateway
+- 1 security group
+- 1 IAM role + instance profile for SSM access
+- 2 always-on EC2 workers by default
+
+## Auth
+
+Terraform uses normal AWS credentials. The fastest path is to export them in your shell:
+
+```bash
+export AWS_ACCESS_KEY_ID="your-access-key-id"
+export AWS_SECRET_ACCESS_KEY="your-secret-access-key"
+export AWS_DEFAULT_REGION="us-east-1"
+```
+
+If you also have a session token:
+
+```bash
+export AWS_SESSION_TOKEN="your-session-token"
+```
+
+## Deploy
+
+```bash
+cd infra/aws
+cp terraform.tfvars.example terraform.tfvars
+terraform init
+terraform plan
+terraform apply
+```
+
+## Notes
+
+- No inbound ports are opened by default.
+- Use AWS Systems Manager Session Manager to access the workers instead of SSH.
+- If you want to expose your app on a worker later, add CIDRs and ports in `terraform.tfvars`.

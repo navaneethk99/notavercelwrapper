@@ -1,0 +1,53 @@
+variable "project_name" {
+  description = "Short name used for AWS resource tags."
+  type        = string
+  default     = "clircel"
+}
+
+variable "environment" {
+  description = "Environment label for tags."
+  type        = string
+  default     = "hackathon"
+}
+
+variable "aws_region" {
+  description = "AWS region where the worker VMs will be created."
+  type        = string
+  default     = "us-east-1"
+}
+
+variable "availability_zone" {
+  description = "Single AZ used for the public subnet."
+  type        = string
+  default     = "us-east-1a"
+}
+
+variable "worker_count" {
+  description = "How many always-on workers to create."
+  type        = number
+  default     = 2
+}
+
+variable "worker_instance_type" {
+  description = "EC2 instance type for warm workers."
+  type        = string
+  default     = "t3.small"
+}
+
+variable "worker_volume_size_gb" {
+  description = "Root volume size for each worker."
+  type        = number
+  default     = 20
+}
+
+variable "worker_allowed_cidr_blocks" {
+  description = "Optional inbound CIDR blocks. Leave empty to avoid opening ports."
+  type        = list(string)
+  default     = []
+}
+
+variable "worker_ingress_ports" {
+  description = "Optional inbound ports to open for the workers."
+  type        = list(number)
+  default     = []
+}
