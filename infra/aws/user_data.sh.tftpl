@@ -1,0 +1,16 @@
+#!/bin/bash
+set -euxo pipefail
+
+dnf update -y
+dnf install -y docker git unzip tar curl
+
+systemctl enable docker
+systemctl start docker
+
+usermod -aG docker ec2-user
+
+mkdir -p /opt/${project_name}
+cat >/etc/motd <<EOF
+${project_name} ${environment} warm worker
+Docker is installed and ready.
+EOF

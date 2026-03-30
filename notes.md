@@ -97,3 +97,47 @@
 
   bun run db:generate
   bun run db:migrate
+
+
+
+
+What To Measure
+
+
+  - cold start time
+  - warm start time
+  - queue wait time
+  - deployment success rate
+  - worker utilization
+  - job completion time
+  - worker reuse rate
+  - cost per job
+  - time to first log
+  - provisioning time
+
+
+Best Hackathon Story
+
+  You probably want to prove one claim:
+
+  “Warm workers reduce startup latency while keeping costs reasonable.”
+
+  So your headline metrics should be:
+
+  - P50 warm start time
+  - P95 warm start time
+  - P50 cold start time
+  - P95 cold start time
+  - success rate
+  - average cost per job or idle cost per hour
+
+  That gives you a clean comparison.
+
+  Example pitch:
+
+  - cold start: 75s
+  - warm start: 6s
+  - success rate: 96%
+  - idle pool cost: $X/hour
+
+  That is much stronger than listing 10 features.
