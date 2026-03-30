@@ -23,6 +23,8 @@ Start the frontend:
 bun run dev:web
 ```
 
+The web app intentionally runs Next through `node` with `--webpack` to avoid Bun/Turbopack instability during local development.
+
 Start the API:
 
 ```bash

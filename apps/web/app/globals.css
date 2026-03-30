@@ -9,6 +9,8 @@
   --line: #d6cfbf;
   --accent: #0f766e;
   --danger: #b42318;
+  --font-sans: "Avenir Next", Avenir, "Segoe UI", sans-serif;
+  --font-mono: "SFMono-Regular", "SF Mono", Menlo, Monaco, Consolas, monospace;
 }
 
 * {
